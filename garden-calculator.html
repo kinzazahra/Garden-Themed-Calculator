@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blooming Garden Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 25%, #7fcdcd 50%, #74b9ff 75%, #6c5ce7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px, 70px 70px;
+            z-index: -1;
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .calculator:hover {
+            transform: translateY(-8px);
+        }
+
+        .calculator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 32px;
+            z-index: -1;
+        }
+
+        .title {
+            text-align: center;
+            color: #2d3436;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .title::before {
+            content: '🌸';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        .title::after {
+            content: '🌺';
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: sway 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateY(-50%) rotate(-5deg); }
+            50% { transform: translateY(-50%) rotate(5deg); }
+        }
+
+        .display {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1) inset;
+        }
+
+        .display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(116, 185, 255, 0.3), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        .display::after {
+            content: '🌿';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: leafDance 2s ease-in-out infinite;
+        }
+
+        @keyframes leafDance {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .display-text {
+            color: #2d3436;
+            font-size: 36px;
+            font-weight: 400;
+            text-align: right;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 22px;
+            color: #2d3436;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            user-select: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(116, 185, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-operator {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.9), rgba(255, 107, 107, 0.7));
+            border: 2px solid rgba(255, 107, 107, 0.8);
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 1), rgba(255, 107, 107, 0.8));
+        }
+
+        .btn-equals {
+            background: linear-gradient(145deg, rgba(46, 213, 115, 0.9), rgba(46, 213, 115, 0.7));
+            border: 2px solid rgba(46, 213, 115, 0.8);
+            color: white;
+        }
+
+        .btn-equals:hover {
+            background: linear-gradient(145deg, rgba(46, 213, 115, 1), rgba(46, 213, 115, 0.8));
+        }
+
+        .btn-clear {
+            background: linear-gradient(145deg, rgba(255, 165, 0, 0.9), rgba(255, 165, 0, 0.7));
+            border: 2px solid rgba(255, 165, 0, 0.8);
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: linear-gradient(145deg, rgba(255, 165, 0, 1), rgba(255, 165, 0, 0.8));
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-flower {
+            position: absolute;
+            font-size: 30px;
+            animation: floatAndRotate 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatAndRotate {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 0.4;
+            }
+        }
+
+        .floating-flower:nth-child(1) {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .floating-flower:nth-child(2) {
+            top: 25%;
+            right: 12%;
+            animation-delay: 2s;
+        }
+
+        .floating-flower:nth-child(3) {
+            bottom: 35%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .floating-flower:nth-child(4) {
+            bottom: 15%;
+            right: 8%;
+            animation-delay: 1s;
+        }
+
+        .floating-flower:nth-child(5) {
+            top: 60%;
+            left: 5%;
+            animation-delay: 3s;
+        }
+
+        .floating-flower:nth-child(6) {
+            top: 45%;
+            right: 5%;
+            animation-delay: 5s;
+        }
+
+        /* Celebration Animation */
+        .celebration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .celebration-flower {
+            position: absolute;
+            font-size: 25px;
+            animation: celebrate 2s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes celebrate {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) rotate(360deg) translateY(-100px);
+            }
+        }
+
+        .garden-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid transparent;
+            border-radius: 40px;
+            background: linear-gradient(45deg, #a8e6cf, #88d8a3, #7fcdcd, #74b9ff) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 24px;
+            }
+            
+            .btn {
+                padding: 18px;
+                font-size: 18px;
+            }
+            
+            .display-text {
+                font-size: 28px;
+            }
+            
+            .title::before,
+            .title::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-flower">🌸</div>
+        <div class="floating-flower">🌺</div>
+        <div class="floating-flower">🌻</div>
+        <div class="floating-flower">🌷</div>
+        <div class="floating-flower">🌹</div>
+        <div class="floating-flower">🌼</div>
+    </div>
+
+    <div class="calculator">
+        <div class="garden-border"></div>
+        <h1 class="title">Garden Calculator</h1>
+        <div class="display">
+            <div class="display-text" id="display">0</div>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-clear" onclick="clearDisplay()">AC</button>
+            <button class="btn btn-operator" onclick="deleteLast()">⌫</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('/')">/</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('*')">×</button>
+            
+            <button class="btn" onclick="appendToDisplay('7')">7</button>
+            <button class="btn" onclick="appendToDisplay('8')">8</button>
+            <button class="btn" onclick="appendToDisplay('9')">9</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('-')">-</button>
+            
+            <button class="btn" onclick="appendToDisplay('4')">4</button>
+            <button class="btn" onclick="appendToDisplay('5')">5</button>
+            <button class="btn" onclick="appendToDisplay('6')">6</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('+')">+</button>
+            
+            <button class="btn" onclick="appendToDisplay('1')">1</button>
+            <button class="btn" onclick="appendToDisplay('2')">2</button>
+            <button class="btn" onclick="appendToDisplay('3')">3</button>
+            <button class="btn btn-equals" onclick="calculateResult()" rowspan="2">=</button>
+            
+            <button class="btn btn-zero" onclick="appendToDisplay('0')">0</button>
+            <button class="btn" onclick="appendToDisplay('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '0';
+        let operator = null;
+        let waitingForNewNumber = false;
+
+        function updateDisplay() {
+            display.textContent = currentInput;
+            display.style.transform = 'scale(1.05)';
+            display.style.color = '#2e7d32';
+            setTimeout(() => {
+                display.style.transform = 'scale(1)';
+                display.style.color = '#2d3436';
+            }, 150);
+        }
+
+        function appendToDisplay(value) {
+            if (waitingForNewNumber) {
+                currentInput = '';
+                waitingForNewNumber = false;
+            }
+            
+            if (currentInput === '0' && value !== '.') {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            operator = null;
+            waitingForNewNumber = false;
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                let expression = currentInput.replace(/×/g, '*');
+                let result = eval(expression);
+                
+                if (result % 1 === 0) {
+                    currentInput = result.toString();
+                } else {
+                    currentInput = result.toFixed(8).replace(/\.?0+$/, '');
+                }
+                
+                waitingForNewNumber = true;
+                updateDisplay();
+                
+                // Trigger celebration!
+                celebrate();
+            } catch (error) {
+                currentInput = 'Error';
+                waitingForNewNumber = true;
+                updateDisplay();
+            }
+        }
+
+        function celebrate() {
+            const flowers = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌵', '🌿', '🍀', '🌱'];
+            const celebrationDiv = document.createElement('div');
+            celebrationDiv.className = 'celebration';
+            document.body.appendChild(celebrationDiv);
+
+            // Create multiple celebration flowers
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.className = 'celebration-flower';
+                    flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                    
+                    // Random position
+                    flower.style.left = Math.random() * 100 + '%';
+                    flower.style.top = Math.random() * 100 + '%';
+                    
+                    celebrationDiv.appendChild(flower);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        flower.remove();
+                    }, 2000);
+                }, i * 100);
+            }
+
+            // Remove celebration container
+            setTimeout(() => {
+                celebrationDiv.remove();
+            }, 3000);
+
+            // Add extra sparkle to calculator
+            const calculator = document.querySelector('.calculator');
+            calculator.style.boxShadow = '0 25px 50px rgba(46, 213, 115, 0.3), 0 0 0 3px rgba(46, 213, 115, 0.4) inset';
+            calculator.style.transform = 'translateY(-12px) scale(1.02)';
+            
+            setTimeout(() => {
+                calculator.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2) inset';
+                calculator.style.transform = 'translateY(-8px) scale(1)';
+            }, 1000);
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            if (key >= '0' && key <= '9') {
+                appendToDisplay(key);
+            } else if (key === '.') {
+                appendToDisplay('.');
+            } else if (key === '+' || key === '-') {
+                appendToDisplay(key);
+            } else if (key === '*') {
+                appendToDisplay('*');
+            } else if (key === '/') {
+                event.preventDefault();
+                appendToDisplay('/');
+            } else if (key === 'Enter' || key === '=') {
+                calculateResult();
+            } else if (key === 'Escape') {
+                clearDisplay();
+            } else if (key === 'Backspace') {
+                deleteLast();
+            }
+        });
+
+        // Enhanced ripple effect with flower petals
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(116, 185, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.8s linear';
+                ripple.style.left = (e.clientX - e.target.offsetLeft) + 'px';
+                ripple.style.top = (e.clientY - e.target.offsetTop) + 'px';
+                ripple.style.width = '10px';
+                ripple.style.height = '10px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 800);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(6);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
