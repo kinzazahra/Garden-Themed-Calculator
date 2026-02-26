@@ -1,4 +1,4 @@
-Garden Calculator – Nature-Inspired Math
+ Garden Calculator – Nature-Inspired Math
 A refreshing, garden-themed web application that brings a touch of nature to your daily calculations. This interactive tool combines essential mathematical functionality with a vibrant, eco-friendly aesthetic, featuring blooming animations and a serene user interface.
 
 Built with growth and logic by Kinza Zahra 🌿🌻
