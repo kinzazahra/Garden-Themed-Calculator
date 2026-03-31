@@ -1,7 +1,5 @@
- Garden Calculator – Nature-Inspired Math
+Garden Calculator – Nature-Inspired Math
 A refreshing, garden-themed web application that brings a touch of nature to your daily calculations. This interactive tool combines essential mathematical functionality with a vibrant, eco-friendly aesthetic, featuring blooming animations and a serene user interface.
-
-Built with growth and logic by Kinza Zahra 🌿🌻
 
 Features
 Nature-Inspired UI:
@@ -60,7 +58,117 @@ Alternatively, use the Live Server extension in VS Code for the best experience.
 Calculate: Use the numeric pad to enter your values just like a standard calculator.
 
 Clear Systems: Use the AC (All Clear) button to reset your workspace or the DEL button to fix minor mistakes.
+🌿 Garden Calculator – Nature-Inspired Math
 
+A refreshing, garden-themed calculator that transforms everyday calculations into a calm, nature-infused experience. Designed with elegance and simplicity, this interactive web app blends essential math functionality with a serene, eco-friendly aesthetic.
+
+Crafted with logic and growth by Kinza Zahra 🌻
+
+✨ Overview
+
+Garden Calculator isn’t just a tool—it’s an experience. With soft colors, subtle animations, and a clean interface, it makes working with numbers feel peaceful and intuitive.
+
+Whether you're solving quick equations or planning something more complex, this calculator keeps things smooth, responsive, and visually delightful.
+
+🌸 Features
+🍃 Nature-Inspired UI
+
+Eco-Friendly Color Palette
+A calming combination of Fresh Leaf Green #7AB2B2 and Soft Floral Pink #EEA5A6.
+
+Interactive Foliage Effects
+Buttons gently glow and “bloom” on hover, adding a natural touch to user interactions.
+
+🔢 Full Calculation Suite
+
+Basic Arithmetic
+Perform addition, subtraction, multiplication, and division effortlessly.
+
+Advanced Operations
+Includes percentage calculations and square roots for extended functionality.
+
+🌼 Interactive Feedback
+
+Floating Petals Animation
+A dynamic background of drifting petals creates a relaxing atmosphere.
+
+Glassmorphism Display
+A modern, frosted-glass styled display for clear and elegant number visibility.
+
+📱 Responsive & Modern Design
+
+Fully responsive layout for desktop, tablet, and mobile
+
+Lightweight single-file architecture for instant loading
+
+No external dependencies — fast, simple, and efficient
+
+🛠 Tech Stack
+
+Structure: HTML5
+
+Styling: CSS3 (Flexbox, Grid, Animations)
+
+Logic: Vanilla JavaScript (ES6+)
+
+📂 Project Structure
+
+Garden-Themed-Calculator/
+│
+└── garden-calculator.html # Complete app (HTML + CSS + JS)
+
+⚙️ Installation & Setup
+
+No setup required — just open and use!
+
+1. Clone the Repository
+
+git clone <your-repo-url>
+cd Garden-Themed-Calculator
+
+2. Run the App
+
+Open garden-calculator.html in any browser
+OR
+
+Use Live Server (VS Code) for a smoother experience
+
+🚀 How to Use
+
+Enter values using the numeric keypad
+
+Perform calculations with standard operators
+
+Fix mistakes using:
+
+DEL → Remove last input
+
+AC → Clear everything
+
+Enjoy the floating petals while calculating 🌸
+
+🔮 Future Enhancements
+
+Scientific Mode for advanced calculations
+
+Nature-inspired sound effects (birds, leaves, breeze)
+
+Multiple themes:
+
+Autumn Forest 🍁
+
+Midnight Garden 🌙
+
+Spring Bloom 🌷
+
+💡 Why This Project?
+
+This project combines design + functionality, showing how even simple tools can feel delightful when crafted with creativity and attention to detail.
+
+❤️ Author
+
+Kinza Zahra
+Made with passion, creativity, and a love for nature 🌿
 Enjoy the View: Watch the animated petals drift across the screen as you work through your numbers.
 
 🔮 Future Improvements
