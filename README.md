@@ -1,79 +1,96 @@
-🌿 Garden Calculator – Nature-Inspired Math
+# 🌿 Garden Calculator – Nature-Inspired Math
 
 A refreshing, garden-themed calculator that transforms everyday calculations into a calm, nature-infused experience. Designed with elegance and simplicity, this interactive web app blends essential math functionality with a serene, eco-friendly aesthetic.
 
-✨ Overview
+---
+
+## ✨ Overview
 
 Garden Calculator isn’t just a tool—it’s an experience. With soft colors, subtle animations, and a clean interface, it makes working with numbers feel peaceful and intuitive.
 
 Whether you're solving quick equations or planning something more complex, this calculator keeps things smooth, responsive, and visually delightful.
 
-🌸 Features
-🍃 Nature-Inspired UI
+---
 
-Eco-Friendly Color Palette
-A calming combination of Fresh Leaf Green #7AB2B2 and Soft Floral Pink #EEA5A6.
+## 🌸 Features
 
-Interactive Foliage Effects
-Buttons gently glow and “bloom” on hover, adding a natural touch to user interactions.
+### 🍃 Nature-Inspired UI
 
-🔢 Full Calculation Suite
+- **Eco-Friendly Color Palette**  
+  A calming combination of:
+  - Fresh Leaf Green `#7AB2B2`  
+  - Soft Floral Pink `#EEA5A6`  
 
-Basic Arithmetic
-Perform addition, subtraction, multiplication, and division effortlessly.
+- **Interactive Foliage Effects**  
+  Buttons gently glow and “bloom” on hover, adding a natural touch.
 
-Advanced Operations
-Includes:
+---
 
-Percentages
+### 🔢 Full Calculation Suite
 
-Square roots
+- **Basic Arithmetic**
+  - Addition  
+  - Subtraction  
+  - Multiplication  
+  - Division  
 
-🌼 Interactive Feedback
+- **Advanced Operations**
+  - Percentage (%)  
+  - Square root (√)  
 
-Floating Petals Animation
-A dynamic background of drifting petals creates a relaxing atmosphere.
+---
 
-Glassmorphism Display
-A modern, frosted-glass styled display for clear and elegant number visibility.
+### 🌼 Interactive Feedback
 
-📱 Responsive & Modern Design
+- **Floating Petals Animation**  
+  A relaxing animated background with drifting petals.
 
-Fully responsive layout for:
+- **Glassmorphism Display**  
+  A modern frosted-glass styled display for clear readability.
 
-Desktop
+---
 
-Tablet
+### 📱 Responsive & Modern Design
 
-Mobile
+- Fully responsive for:
+  - Desktop  
+  - Tablet  
+  - Mobile  
 
-Lightweight single-file architecture
+- **Single-file architecture** (HTML + CSS + JS)  
+- No dependencies — fast and lightweight  
 
-No external dependencies — fast and efficient
+---
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
-Structure: HTML5
+- **Structure:** HTML5  
+- **Styling:** CSS3  
+  - Flexbox  
+  - Grid  
+  - Keyframe Animations  
 
-Styling: CSS3
+- **Logic:** Vanilla JavaScript (ES6+)  
 
-Flexbox
+---
 
-Grid
+## 📂 Project Structure
 
-Keyframe Animations
 
-Logic: Vanilla JavaScript (ES6+)
-
-📂 Project Structure
 Garden-Themed-Calculator/
 │
-└── garden-calculator.html   # Complete app (HTML + CSS + JS)
-⚙️ Installation & Setup
+└── garden-calculator.html # Complete self-contained app
 
-No installation required — just open and use!
 
-1. Clone the Repository
+---
+
+## ⚙️ Installation & Setup
+
+No installation required — just open and run.
+
+### 1. Clone the Repository
+
+```bash
 git clone <your-repo-url>
 cd Garden-Themed-Calculator
 2. Run the Application
@@ -82,27 +99,27 @@ Open garden-calculator.html in your browser
 
 OR
 
-Use Live Server (VS Code) for the best experience
+Use Live Server (VS Code) for better experience
 
 🚀 How to Use
 
-Use the numeric keypad to enter values
+Enter numbers using the keypad
 
-Perform calculations using standard operators
+Perform calculations using operators
 
-Manage inputs:
+Use:
 
-DEL → Remove last digit
+DEL → Remove last input
 
-AC → Clear all
+AC → Clear everything
 
-Enjoy the calming floating petals 🌸 while calculating
+Enjoy the calming floating petals 🌸
 
 🔮 Future Enhancements
 
-🌿 Scientific Mode for advanced calculations
+🌿 Scientific Mode
 
-🔊 Nature-inspired sound effects (birds, leaves, breeze)
+🔊 Nature sound effects (birds, leaves, breeze)
 
 🎨 Multiple themes:
 
@@ -114,9 +131,10 @@ Spring Bloom 🌷
 
 💡 Why This Project?
 
-This project blends design + functionality, showing how even simple tools can feel delightful when crafted with creativity and attention to detail.
+This project blends design + functionality, proving that even simple tools can feel delightful with thoughtful UI and creativity.
 
 ❤️ Author
 
 Kinza Zahra
-Made with passion, creativity, and a love for nature 🌿
+
+Made with ❤️, creativity, and a love for nature 🌿
