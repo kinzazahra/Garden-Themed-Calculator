@@ -138,4 +138,3 @@ This project blends design + functionality, proving that even simple tools can f
 Kinza Zahra
 
 Made with ❤️, creativity, and a love for nature 🌿
-
